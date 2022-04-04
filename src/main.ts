@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 var connection = require('./db')
 
+
 app.use(express.static('public'))
 
 app.get("/", function (req, res) {
@@ -17,18 +18,21 @@ app.get("/login", function (req, res) {
 app.listen(3000);
 
 
-app.post('/authentication', function(req, res, next) {
-    var email = req.body.email;
-    var password = req.body.password;
-    connection.query('SELECT * FROM accounts WHERE email = ? AND password = ?', [email, password], function(err, rows, fields) {
+app.get('/authentication', function(req, res, next) {
+    var username = req.query.uname;
+    var password = req.query.psw;
+    console.log('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password])
+    console.log(req.query)
+    connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(err, rows, fields) {
         if(err) throw err
 // if user not found
         if (rows.length <= 0) {
-            req.flash('error', 'Please correct enter email and Password!')
-            res.redirect('/login')
+            console.log('Unsuccesful')
+            res.redirect('/')
         }
         else { // if user found
-            res.redirect('/home');
+            console.log('Successful')
+            res.redirect('/');
         }
     })
 })

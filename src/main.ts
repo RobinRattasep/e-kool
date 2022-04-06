@@ -4,9 +4,16 @@ const path = require('path');
 var connection = require('./db')
 
 
+app.set('view engine', 'pug');
+
+
 app.use(express.static('public'))
 
 app.get("/", function (req, res) {
+    res.render('index', {name: 'tere',
+    maja: 'kollane',
+    auto: 'punane'}
+    );
     res.sendFile(path.join(__dirname, '/index.html'));
 });
 
@@ -32,6 +39,7 @@ app.get('/authentication', function(req, res, next) {
         }
         else { // if user found
             console.log('Successful')
+            res.cookie('cookieName', 'cookieValue')
             res.redirect('/');
         }
     })

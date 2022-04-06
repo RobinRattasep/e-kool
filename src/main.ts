@@ -20,6 +20,9 @@ app.get("/", function (req, res) {
 app.get("/login", function (req, res) {
     res.sendFile(path.join(__dirname, '/index.html'));
 });
+app.get("/grades", function (req, res) {
+    res.sendFile(path.join(__dirname, '/grades.pug'));
+});
 
 
 app.listen(3000);

@@ -4,19 +4,46 @@ head
     title e-kool
     link(rel='stylesheet' href='style.css')
 #logo
-    img(src='downloadtrans.png' width='80' height='80')
-.topnav
-    a.active(href='#home') Koolipere
-    a(href='grades') Hinneteleht
-    a(href='#tunnid') Ained
-    a(href='#about') Pingerida
-    button.login(onclick="document.getElementById('id01').style.display='block'") Login
-div(style='padding-left:16px')
-    h2 Viimased sissekanded
-    p #{name}
-    p #{auto}
-h1
-hr.incline-line
+    img(src='ekool_horizontal.png' width='180' height='80')
+.header
+    .header-right
+        a(href='grades') Hinded
+        a(href='#contact') Ained
+        a(href='#about') Pingerida
+        a.active(href='#about' onclick="document.getElementById('id01').style.display='block'") Logi sisse
+#id01
+    form.modal-content.animate(action='/authentication' method='get')
+        .imgcontainer
+            span.close(onclick="document.getElementById('id01').style.display='none'" title='Close Modal') &times;
+            img.avatar(src='download.png' alt='Avatar')
+        .container
+            label(for='uname')
+                b Username
+            input(type='text' placeholder='Enter Username' name='uname' required='')
+            label(for='psw')
+                b Password
+            input(type='password' placeholder='Enter Password' name='psw' required='')
+            button.submitbtn(type='submit') Login
+            label
+                input(type='checkbox' checked='checked' name='remember')
+                |  Remember me
+        .container(style='background-color:#f1f1f1')
+            button.cancelbtn(type='button' onclick="document.getElementById('id01').style.display='none'") Cancel
+            span.psw
+                a(href='#' onclick="document.getElementById('id02').style.display='block'") Sign Up
+.st-page
+    h1 TEEME &Uuml;HESKOOS &Otilde;PPIMISE L&Otilde;BUSAKS
+    button.pohikoolid V&otilde;imalused
+    h2
+.undernavbar
+    a(href='#home') Kasutajatingimused
+    a(href='#news') Toetatud koolid
+    a(href='#contact') Registreeru
+
+
+
+
+
 #id01.modal
     form.modal-content.animate(action='/authentication' method='get')
         .imgcontainer
@@ -37,60 +64,5 @@ hr.incline-line
             button.cancelbtn(type='button' onclick="document.getElementById('id01').style.display='none'") Cancel
             span.psw
                 a(href='#' onclick="document.getElementById('id02').style.display='block'") Sign Up
-script.
-    // Get the modal
-    var modal = document.getElementById('id01');
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-#id02.modal
-    span.close(onclick="document.getElementById('id02').style.display='none'" title='Close Modal') &times;
-    form.modal-content(action='/action_page.php')
-        .container
-            h1 Sign Up
-            p Please fill in this form to create an account.
-            hr
-            label(for='email')
-                b Email
-            input(type='text' placeholder='Enter Email' name='email' required='')
-            label(for='username')
-                b Enter your username
-            input(type='text' placeholder='Username' name='username' required='')
-            label(for='psw')
-                b Password
-            input(type='password' placeholder='Enter Password' name='psw' required='')
-            label(for='psw-repeat')
-                b Repeat Password
-            input(type='password' placeholder='Repeat Password' name='psw-repeat' required='')
-            form
-                label(for='school') Please choose your school:
-                select#region(name='region')
-                    option(value='tartu') Tartu
-                    option(value='tallinn') Tallinn
-                    option(value='kohila') Kohila
-                    option(value='viljandi') Viljandi
-                    option(value='peipsi') Peipsi
-                br
-                br
-            label
-                input(type='checkbox' checked='checked' name='remember' style='margin-bottom:15px')
-                |  Remember me
-            p
-                | By creating an account you agree to our
-                a(href='#' style='color:dodgerblue') Terms &amp; Privacy
-                | .
-            .clearfix
-                button.submitbtn(type='submit') Sign Up
-                button.cancelbtn(type='button' onclick="document.getElementById('id02').style.display='none'") Cancel
-script.
-    // Get the modal
-    var modal = document.getElementById('id02');
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+
+

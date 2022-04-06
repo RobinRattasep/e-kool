@@ -7,24 +7,106 @@
 </head>
 <body>
 <div id="logo">
-    <img src="downloadtrans.png" width="80" height="80">
+    <img src="ekool_horizontal.png" width="180" height="80">
+</div>
+
+<div class="header">
+    <div class="header-right">
+        <a href="#home">Hinded</a>
+        <a href="#contact">Ained</a>
+        <a href="#about">Pingerida</a>
+        <a href="#about" class="active" onclick="document.getElementById('id01').style.display='block'">Logi sisse</a>
+
+    </div>
+</div>
+
+<div id="id01">
+
+    <form class="modal-content animate" action="/authentication" method="get">
+
+
+        <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <img src="download.png" alt="Avatar" class="avatar">
+        </div>
+
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <button type="submit" class="submitbtn">Login</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+            <span class="psw"><a href="#" onclick="document.getElementById('id02').style.display='block'">Sign Up</a></span>
+        </div>
+    </form>
 </div>
 
 
-<div class="topnav">
-    <a class="active" href="#home">Koolipere</a>
-    <a href="#hinded">Hinneteleht</a>
-    <a href="#tunnid">Ained</a>
-    <a href="#about">Pingerida</a>
-    <button class="login" onclick="document.getElementById('id01').style.display='block'">Login</button>
+
+<div class="st-page" >
+    <h1>TEEME ÜHESKOOS ÕPPIMISE LÕBUSAKS</h1>
+    <button class="pohikoolid">Võimalused</button>
+    <h2></h2>
 </div>
 
-<div style="padding-left:16px">
-    <h2>Viimased sissekanded</h2>
-    <p>Sinu nimi</p>
+
+
+<div class="undernavbar">
+    <a href="#home">Kasutajatingimused</a>
+    <a href="#news">Toetatud koolid</a>
+    <a href="#contact">Registreeru</a>
 </div>
-<h1><%= name %></h1>
-<hr class="incline-line">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div id="id01" class="modal">
 
     <form class="modal-content animate" action="/authentication" method="get">
@@ -53,6 +135,14 @@
     </form>
 </div>
 
+
+
+
+
+
+
+
+
 <script>
     // Get the modal
     var modal = document.getElementById('id01');
@@ -64,6 +154,60 @@
         }
     }
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div id="id02" class="modal">
     <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>

@@ -2,12 +2,32 @@ doctype html
 head
     meta(charset='UTF-8')
     title e-kool
-    link(rel='stylesheet' href='style.css')
+    link(rel='stylesheet' href='grades.css')
 #logo
-    img(src='downloadtrans.png' width='80' height='80')
-.topnav
-    a.active(href='#home') Koolipere
-    a(href='grades') Hinneteleht
-    a(href='#tunnid') Ained
-    a(href='#about') Pingerida
-    button.login(onclick="document.getElementById('id01').style.display='block'") Login
+    img(src='ekool_horizontal.png' width='180' height='80')
+.header
+    .header-right
+        a(href='grades') Hinded
+        a(href='#contact') Ained
+        a(href='#about') Pingerida
+        a.active(href='#about' onclick="document.getElementById('id01').style.display='block'") Logi sisse
+div(style='padding-left:16px')
+    h2 Hinneteleht
+    p Sinu nimi
+table
+    tr
+        th Aine
+        th Hinded
+        th Kokkuv&otilde;ttev hinne
+    tr
+        td select aine nimi
+        td for hinded
+        td avg(hinded)
+    tr
+        td select aine nimi
+        td for hinded
+        td avg(hinded)
+    tr
+        td select aine nimi
+        td for hinded
+        td avg(hinded)

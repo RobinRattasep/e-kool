@@ -1,11 +1,3 @@
-.incline-line{
-    border-left: 4px solid dodgerblue;
-    height: 700px;
-    border-color: #5193ff;
-    margin-left: 100px;
-    margin-right: 100px;
-}
-
 html {
     scroll-behavior: smooth;
 }
@@ -65,6 +57,66 @@ body {
 
 
 
+
+.st-page {
+    background: url('1stmainpage.jpg') no-repeat;
+    background-size: 100%;
+    height: 750px;
+    text-align: center;
+    padding-top: 240px;
+    color: white;
+}
+
+
+
+
+.pohikoolid {
+    margin-top: 20px;
+    color: black;
+    text-align: center;
+    padding: 17px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+    background-color: dodgerblue;
+    color: white;
+
+}
+
+
+
+.undernavbar {
+    overflow: hidden;
+    background-color: #ebebeb;
+    position: absolute;
+    width: 100%;
+}
+
+.undernavbar a {
+    float: center;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.undernavbar a:hover {
+    background: #ddd;
+    color: black;
+}
+
+
+.main {
+    padding: 16px;
+    margin-bottom: 30px;
+}
+
+
+
+
 table {
     font-family: arial, sans-serif;
     border-left: 4px solid dodgerblue;
@@ -83,4 +135,36 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+form {
+    padding: 30px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

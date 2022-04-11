@@ -24,6 +24,10 @@ app.get("/grades", function (req, res) {
     res.render( 'grades');
 });
 
+app.get("/competition", function (req, res) {
+    res.render( 'competition');
+});
+
 
 app.listen(3000);
 

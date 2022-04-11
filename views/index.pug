@@ -7,10 +7,8 @@ head
     img(src='ekool_horizontal.png' width='180' height='80')
 .header
     .header-right
-        a(href='grades') Hinded
-        a(href='#contact') Ained
-        a(href='#about') Pingerida
-        a.active(href='#about' onclick="document.getElementById('id01').style.display='block'") Logi sisse
+        a(href='constact') Kontakt
+        a.active(href='#about' onclick="document.getElementById('id02').style.display='block'") Registreeru
 #id01
     form.modal-content.animate(action='/authentication' method='get')
         .imgcontainer
@@ -38,7 +36,7 @@ head
 .undernavbar
     a(href='#home') Kasutajatingimused
     a(href='#news') Toetatud koolid
-    a(href='#contact') Registreeru
+    a(href='#about' onclick="document.getElementById('id02').style.display='block'") Registreeru
 
 
 
@@ -66,3 +64,55 @@ head
                 a(href='#' onclick="document.getElementById('id02').style.display='block'") Sign Up
 
 
+// register form
+
+#id02.modal
+    span.close(onclick="document.getElementById('id02').style.display='none'" title='Close Modal') &times;
+    form.modal-content1(action='/action_page.php')
+        .container
+            h1 Sign Up
+            p Please fill in this form to create an account.
+            hr
+            label(for='email')
+                b Email
+            input(type='text' placeholder='Enter Email' name='email' required='')
+            label(for='username')
+                b Enter your username
+            input(type='text' placeholder='Username' name='username' required='')
+            label(for='psw')
+                b Password
+            input(type='password' placeholder='Enter Password' name='psw' required='')
+            label(for='psw-repeat')
+                b Repeat Password
+            input(type='password' placeholder='Repeat Password' name='psw-repeat' required='')
+            form
+                label(for='school') Please choose your school:
+                select#region(name='region')
+                    option(value='tartu') Tartu
+                    option(value='tallinn') Tallinn
+                    option(value='kohila') Kohila
+                    option(value='viljandi') Viljandi
+                    option(value='peipsi') Peipsi
+                br
+                br
+            label
+                input(type='checkbox' checked='checked' name='remember' style='margin-bottom:15px')
+                |  Remember me
+            p
+                | By creating an account you agree to our
+                a(href='#' style='color:dodgerblue') Terms &amp; Privacy
+                | .
+            .clearfix
+                button.submitbtn(type='submit') Sign Up
+                button.cancelbtn(type='button' onclick="document.getElementById('id02').style.display='none'") Cancel
+script.
+    // Get the modal
+    var modal = document.getElementById('id02');
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+// register form end

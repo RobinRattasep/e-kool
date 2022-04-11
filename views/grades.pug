@@ -19,15 +19,14 @@ table
         th Aine
         th Hinded
         th Kokkuv&otilde;ttev hinne
-    tr
-        td select aine nimi
-        td for hinded
-        td avg(hinded)
-    tr
-        td select aine nimi
-        td for hinded
-        td avg(hinded)
-    tr
-        td select aine nimi
-        td for hinded
-        td avg(hinded)
+    each val, i in ained
+        tr
+            td= val.aine_nimi
+            td.kala= hinded[i].hinne
+            td= val.hinne
+    script.
+        var els = document.getElementsByClassName('kala');
+        for (var i = 0; i < els.length; i++) {
+            els[i].innerHTML = els[i].innerHTML.replace(/,/g, ', ');
+        }
+

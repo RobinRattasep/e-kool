@@ -92,26 +92,6 @@ body {
 
 
 
-html {
-    scroll-behavior: smooth;
-}
-
-
-* {
-    box-sizing: border-box;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
-}
-
-body {
-    margin: 0;
-    background: linear-gradient(-45deg, #5193ff, rgb(151, 208, 255));
-}
-
-* {
-    margin: 0;
-}
-
 .header {
     overflow: hidden;
     background-color: #ebebeb;

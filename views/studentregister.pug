@@ -1,0 +1,92 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Register form
+    link(rel='stylesheet' href='studentregister.css')
+#logo
+    img(src='ekool_horizontal.png' width='180' height='80')
+.header
+    .header-right
+.container
+    form(action='/studentregister' method='post')
+        label(for='fname') First Name
+        input#fname.cont(type='text' name='firstname' placeholder='Your name..')
+
+        label(for='lname') Last Name
+        input#lname(type='text' name='lastname' placeholder='Your last name..')
+
+        label(for='username') Kasutajanimi
+        input#username(type='text' name='username' placeholder='Vali endale kasutajanimi..')
+
+        label(for='psw') Salasõna
+        input#psw(type='password' name='psw' placeholder='Sisesta enda salasõna..')
+
+        label(for='class') Class
+        input#class(type='text' name='class' placeholder='Which grade are you in? [1-12]' min="1" max="12")
+
+        label(for='school') School
+        select#school(name='school')
+            option(value='1') Tartu
+            option(value='2') Tallinn
+            option(value='3') Viljandi
+            option(value='4') Kuressaare
+            option(value='5') Rapla
+            option(value='6') Rakvere
+        #checkboxes.checkboxes
+            label Vali ained millele registreerud
+            ul
+                li
+                    input(type='checkbox' value='1' name='mata')
+                    |  Matemaatika
+                li
+                    input(type='checkbox' value='2' name='eta')
+                    |  Eesti Keel
+                li
+                    input(type='checkbox' value='3' name='inka')
+                    |  Inglise keel
+                li
+                    input(type='checkbox' value='4' name='muusika')
+                    |  Muusika
+                li
+                    input(type='checkbox' value='5' name='kunst')
+                    |  Kunst
+                li
+                    input(type='checkbox' value='6' name='ajalugu')
+                    |  Ajalugu
+                li
+                    input(type='checkbox' value='7' name='keemia')
+                    |  Keemia
+                li
+                    input(type='checkbox' value='8' name='bio')
+                    |  Bioloogia
+                li
+                    input(type='checkbox' value='9' name='geo')
+                    |  Geograafia
+                li
+                    input(type='checkbox' value='10' name='kirjandus')
+                    |  Kirjandus
+
+
+
+        .myCheck
+            label(for='myCheck') Ma olen &otilde;petaja:
+            input#myCheck(type='checkbox' onclick='myFunction()')
+            input#text(type='text' style='display:none' name='opetaja' placeholder='Sisesta õpetaja võti')
+        input(type='submit' value='Submit')
+
+
+script.
+    function myFunction() {
+        var checkBox = document.getElementById("myCheck");
+        var text = document.getElementById("text");
+        if (checkBox.checked == true){
+            text.style.display = "block";
+        } else {
+            text.style.display = "none";
+        }
+    }
+
+
+

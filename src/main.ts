@@ -4,7 +4,7 @@ const path = require('path');
 var connection = require('./db')
 var cookieParser = require('cookie-parser')
 const crypto = require('crypto')
-
+const alert = require("alert")
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
@@ -27,7 +27,6 @@ app.get("/studentregister", function (req, res) {
 });
 
 app.listen(3000);
-
 
 app.post('/authentication', function(req, res, next) {
     var username = req.body.uname;
@@ -56,26 +55,33 @@ app.get('/grades', function(req, res, next) {
     var cookie = req.cookies.sess_id;
     console.log(cookie)
     connection.query('SELECT b.aine_nimi, a.hinne, a.kommentaar FROM hinded a INNER JOIN ained b ON a.aine_id = b.aine_id WHERE a.opilase_id = (SELECT user_id from cookies WHERE sess_id = ?)', [cookie], function(err, rows, fields) {
-    console.log(rows)
-        if(err) throw err
+            if(err) throw err
 // if user not found
         if (rows.length <= 0) {
             console.log('No rows')
-            res.redirect('/grades')
+            res.render('lessons')
+
+
         }
         else { // if user found
             console.log('Rows found!')
+            connection.query('SELECT opilase_nimi from opilased WHERE opilase_id = (SELECT user_id from cookies WHERE sess_id = ?)', [cookie], function(err, name, fields) {
+
             // map courses to grades for that course
             const output = Object.entries(rows.reduce((a, {aine_nimi, hinne}) => (a[aine_nimi] = (a[aine_nimi] || []).concat(hinne), a), {})).map(([aine_nimi, hinne]) => ({aine_nimi, hinne}));
-            console.log(output)
             // map courses to avg grade for that course
             var averages = [...rows
                 .reduce((map, { aine_nimi, hinne }) => map.set(aine_nimi, [...(map.get(aine_nimi) || []), hinne]), new Map) ]
                 .map(([aine_nimi, hinne]) => ({ aine_nimi, hinne: hinne.reduce((sum, val) => sum + val, 0) / hinne.length }));
+            console.log(averages)
+
             res.render('grades', {
                 ained: averages,
-                hinded: output
+                hinded: output,
+                nimi: name,
+
             });
+            })
 
         }
     })
@@ -85,7 +91,6 @@ app.post("/studentregister", function (req, res) {
     var sess_id = crypto.randomBytes(20).toString('hex');
     console.log(req.body.mata)
     connection.query('INSERT INTO accounts (kasutajanimi, parool) VALUES (? , ?)', [req.body.username, req.body.psw])
-    connection.query('INSERT INTO opilased (opilase_nimi, klass, kooli_id) VALUES(?, ?, ?)', [req.body.firstname+' '+req.body.lastname, req.body.class, req.body.school])
 
     // If student learns math
     if(req.body.mata !== undefined) {
@@ -126,6 +131,14 @@ app.post("/studentregister", function (req, res) {
     // if student learns writing
     if(req.body.kirjandus !== undefined) {
         connection.query('INSERT INTO opilaste_ained (opilase_id, aine_id) VALUES ((SELECT kasutaja_id FROM accounts WHERE kasutajanimi = ? AND parool = ?), ?)', [req.body.username, req.body.psw, req.body.kirjandus])
+    }
+
+
+    //kas on opetaja
+    if(req.body.opetaja == "supreme") {
+        connection.query('INSERT INTO opilased (opilase_nimi, klass, kooli_id, opetaja) VALUES(?, ?, ?, 1)', [req.body.firstname+' '+req.body.lastname, req.body.class, req.body.school])
+    } else {
+        connection.query('INSERT INTO opilased (opilase_nimi, klass, kooli_id) VALUES(?, ?, ?)', [req.body.firstname+' '+req.body.lastname, req.body.class, req.body.school])
     }
     connection.query('INSERT INTO cookies (user_id, sess_id) VALUES((SELECT kasutaja_id FROM accounts WHERE kasutajanimi = ? AND parool = ?), ?) ON DUPLICATE KEY UPDATE user_id = (SELECT kasutaja_id FROM accounts WHERE kasutajanimi = ? AND parool = ?), sess_id = ?', [req.body.username, req.body.psw, sess_id, req.body.username, req.body.psw, sess_id], function(err, rows, fields) {
        if(err) throw err

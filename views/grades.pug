@@ -11,9 +11,11 @@ head
         a(href='lessons') Ained
         a(href='competition') Pingerida
 //      a.active(href='#about' onclick="document.getElementById('id01').style.display='block'") Logi sisse
+
 div(style='padding-left:16px')
     h2 Hinneteleht
-    p Sinu nimi
+    each val, i in nimi
+        p= val.opilase_nimi
 table
     tr
         th Aine
@@ -23,10 +25,15 @@ table
         tr
             td= val.aine_nimi
             td.kala= hinded[i].hinne
-            td= val.hinne
+            td.grade= val.hinne
     script.
         var els = document.getElementsByClassName('kala');
+        console.log(els)
         for (var i = 0; i < els.length; i++) {
             els[i].innerHTML = els[i].innerHTML.replace(/,/g, ', ');
+        }
+
+        function myFunction() {
+            alert("Hello! I am an alert box!");
         }
 

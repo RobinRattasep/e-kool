@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `hinded`;
 CREATE TABLE `hinded` (
   `opilase_id` int DEFAULT NULL,
   `aine_id` int DEFAULT NULL,
-  `hinne` int NOT NULL,
+  `hinne` int  DEFAULT NULL,
   `kommentaar` varchar(255) DEFAULT NULL,
   KEY `opilase_id` (`opilase_id`),
   KEY `aine_id` (`aine_id`),

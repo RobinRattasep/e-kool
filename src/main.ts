@@ -25,6 +25,26 @@ app.get("/competition", function (req, res) {
 app.get("/studentregister", function (req, res) {
     res.render( 'studentregister');
 });
+app.get("/opetaja", function (req, res) {
+    res.render( 'opetaja');
+});
+app.post("/opetaja", function (req, res) {
+    var cookie = req.cookies.sess_id;
+
+    connection.query('SELECT aine_nimi FROM ained INNER JOIN opilaste_ained ON ained.aine_id = opilaste_ained.aine_id WHERE opilaste_ained.opilase_id = (SELECT user_id from cookies WHERE sess_id = ?)', [cookie], function(err, rows, fields) {
+        var resultArray = Object.values(JSON.parse(JSON.stringify(rows)))
+        var aine = req.body.aine;
+        connection.query('SELECT aine_id from ained where aine_nimi LIKE ?', [aine],function(err, aine_idd, fields) {
+            console.log(aine_idd)
+            connection.query('select * from opilased INNER JOIN opilaste_ained ON opilased.opilase_id=opilaste_ained.opilase_id WHERE opilaste_ained.aine_id = ? ORDER BY 1', [aine_idd],function(err, lapsed, fields) {
+                console.log(lapsed)
+            })
+        })
+        res.render('opetaja', {
+            ained: resultArray
+        });
+    })
+});
 
 app.listen(3000);
 
@@ -143,6 +163,7 @@ app.post("/studentregister", function (req, res) {
     connection.query('INSERT INTO cookies (user_id, sess_id) VALUES((SELECT kasutaja_id FROM accounts WHERE kasutajanimi = ? AND parool = ?), ?) ON DUPLICATE KEY UPDATE user_id = (SELECT kasutaja_id FROM accounts WHERE kasutajanimi = ? AND parool = ?), sess_id = ?', [req.body.username, req.body.psw, sess_id, req.body.username, req.body.psw, sess_id], function(err, rows, fields) {
        if(err) throw err
     })
+
         res.redirect( '/');
 
 
